@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+  <h1>Hey, I am <strong>shahid ullah</strong></h1>
+  <h3>I am complete python Nut</h3>
+  <p>I have been programming About 2 Years.
+    I have experience in <strong>Python, Django, Git, JavaScript, Bootstrap, HTML, CSS</strong>
+  </p>
+  <!-- HTML generated using hilite.me -->
+  <div
+    style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+    <table>
+      <tr>
+        <td>
+          <pre style="margin: 0; line-height: 125%">1
+  </pre>
+        </td>
+        <td>
+          <pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">with</span> <span style="color: #f8f8f2">open(</span><span style="color: #e6db74">&quot;workData.txt&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;r&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #66d9ef">as</span> <span style="color: #f8f8f2">work_data:</span>
+      <span style="color: #f8f8f2">work_data_contents</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">work_data</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">readlines()</span>
+  
+  <span style="color: #f8f8f2">work_data_contents</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">insert(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;This goes between line 1 and 2</span><span style="color: #ae81ff">\n</span><span style="color: #e6db74">&quot;</span><span style="color: #f8f8f2">)</span>
+  
+  <span style="color: #75715e"># Re-open in write-only format to overwrite old file</span>
+  <span style="color: #66d9ef">with</span> <span style="color: #f8f8f2">open(</span><span style="color: #e6db74">&quot;workData.txt&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;w&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #66d9ef">as</span> <span style="color: #f8f8f2">work_data:</span>
+      <span style="color: #f8f8f2">work_dataContents</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;&quot;</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">join(work_data_contents)</span>
+      <span style="color: #f8f8f2">work_data</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">write(work_data_contents)</span>
+  </pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+  
+  {% endblock content %}

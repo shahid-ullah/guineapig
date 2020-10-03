@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if object.body_highlighted %}
+        {{ object.body_highlighted}}
+    {% else %}
+        {{ object.body}}
+  {% endif %}
+{% endblock content %}

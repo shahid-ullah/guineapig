@@ -1,0 +1,1 @@
+# Buildig a standard blog
