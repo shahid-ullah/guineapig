@@ -2,15 +2,16 @@
 media
 note
 db.sqlite3
+tags
 
 # Virtualenv related
 bin/
 include/
 pip-selfcheck.json
 
-# Django related 
+# Django related
 # src/<yourproject>/settings/local.py
-# static-cdn/  # any collected static files 
+# static-cdn/  # any collected static files
 
 
 # Byte-compiled / optimized / DLL files
