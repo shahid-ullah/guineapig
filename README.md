@@ -1,1 +1,1 @@
-# Buildig a standard blog
+# Building a standard blog
