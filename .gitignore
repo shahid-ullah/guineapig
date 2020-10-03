@@ -1,6 +1,7 @@
 .DS_STORE
 media
 note
+db.sqlite3
 
 # Virtualenv related
 bin/
