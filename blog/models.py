@@ -5,6 +5,7 @@ from django.utils import timezone
 # from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from django.shortcuts import reverse
+from django.template.defaultfilters import slugify
 
 from taggit.managers import TaggableManager
 # from markdownx.models import MarkdownxField
@@ -39,7 +40,7 @@ class Post(models.Model):
     )
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250,
-                            unique_for_date='publish')
+                            unique_for_date='publish', blank=True, null=True)
     author = models.ForeignKey(get_user_model(),
                                on_delete=models.CASCADE,
                                related_name='blog_posts')
@@ -52,6 +53,12 @@ class Post(models.Model):
 
     class Meta:
         ordering = ('-publish',)
+    
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.slug = slugify(self.title)
+
+        super(Post, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title

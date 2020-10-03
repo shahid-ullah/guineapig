@@ -63,12 +63,10 @@ def post_list(request, tag_slug=None):
 #     template_name = 'blog/home.html'
 
 
-class PostNew(CreateView):
+class NewPostView(CreateView):
     model = Post
-    # form_class = NewPost
     template_name = 'blog/post_new.html'
-    fields = ['tags', 'title', 'slug', 'author', 'body', 'publish', 'status', ]
-    # success_url = 'home'
+    fields = ['tags', 'title', 'author', 'body', 'status', ]
 
 
 class PostUpdate(UpdateView):
