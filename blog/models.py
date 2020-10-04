@@ -1,5 +1,34 @@
 # blog/models.py
 
+import mistune
+from django.db.models import Count
+from django import template
+
+from pygments import highlight
+from pygments.lexers import get_lexer_by_name
+from pygments.formatters import HtmlFormatter
+
+class HighlightRenderer(mistune.Renderer):
+    def block_code(self, code, lang):
+        print("code")
+        print(code)
+        print()
+        print("language")
+        print(lang)
+        print()
+        if not lang:
+            return '\n<pre><code>%s</code></pre>\n' % \
+                mistune.escape(code)
+        lexer = get_lexer_by_name(lang, stripall=True)
+        formatter = HtmlFormatter()
+        return highlight(code, lexer, formatter)
+
+
+def markdown_format(post):
+    renderer = HighlightRenderer()
+    markdown = mistune.Markdown(renderer=renderer)
+    return markdown(post)
+
 from django.db import models
 from django.utils import timezone
 # from django.contrib.auth.models import User
@@ -34,10 +63,18 @@ class Post(models.Model):
     tags = TaggableManager()
     objects = models.Manager()  # The default manager.
     published = PublishedManager()  # Our custom manager.
+    CONTENT_LANGUAGE_CHOICES = (
+        ('html', 'HTML',),
+        ('mark', 'Markdown'),
+    )
     STATUS_CHOICES = (
         ('draft', 'Draft'),
         ('published', 'Published'),
     )
+    language = models.CharField(max_length=20,
+                                choices=CONTENT_LANGUAGE_CHOICES,
+                                default='html',
+                                help_text="Select Content Language")
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250,
                             unique_for_date='publish', blank=True, null=True)
@@ -45,6 +82,7 @@ class Post(models.Model):
                                on_delete=models.CASCADE,
                                related_name='blog_posts')
     body = models.TextField()
+    body_content = models.TextField(blank=True, null=True, editable=False)
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -53,10 +91,12 @@ class Post(models.Model):
 
     class Meta:
         ordering = ('-publish',)
-    
+
     def save(self, *args, **kwargs):
+        print("Save method called")
         if not self.id:
             self.slug = slugify(self.title)
+        self.body_content = markdown_format(self.body)
 
         super(Post, self).save(*args, **kwargs)
 

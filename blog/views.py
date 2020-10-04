@@ -66,7 +66,7 @@ def post_list(request, tag_slug=None):
 class NewPostView(CreateView):
     model = Post
     template_name = 'blog/post_new.html'
-    fields = ['tags', 'title', 'author', 'body', 'status', ]
+    fields = ['tags', 'language', 'title', 'author', 'body', 'status', ]
 
 
 class PostUpdate(UpdateView):

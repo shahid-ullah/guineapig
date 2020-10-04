@@ -18,7 +18,8 @@
         </a>
         {% endcomment %}
     </h2>
-    <div class="content-body">{{ post.body|markdown|safe}}</div>
+    {# <div class="content-body">{{ post.body|markdown|safe}}</div> #}
+    <div class="content-body">{{ post.body_content|safe}}</div>
 
     <h2>Similar posts</h2>
     {% for post in similar_posts %}
